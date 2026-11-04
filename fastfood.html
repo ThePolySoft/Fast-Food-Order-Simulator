@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rubikoss🎲</title>
+    <meta charset="UTF-8">
+    <style>
+        body { background: #111; color: white; font-family: Arial; padding: 20px; }
+        form { background: #222; padding: 20px; border-radius: 10px; width: 300px; }
+        label { cursor: pointer; margin-left: 5px; }
+        
+        /* Стильная темная кнопка "Заказать" */
+        button { 
+            padding: 8px 15px; 
+            cursor: pointer; 
+            background-color: #111; 
+            color: white;           
+            border: 1px solid #444; 
+            border-radius: 5px; 
+            transition: all 0.3s ease; 
+        }
+
+        /* Зеленое свечение для "Заказать" при наведении */
+        button:hover {
+            background-color: #333;       
+            border-color: #00ff00;        
+            transform: scale(1.08);       
+            box-shadow: 0 0 12px #00ff00; 
+        }
+
+        /* Особый стиль для кнопки "Сбросить" */
+        .reset-btn {
+            background-color: #111;
+            border: 1px solid #444;
+            color: #aaa;
+        }
+
+        /* Красное свечение для "Сбросить" при наведении */
+        .reset-btn:hover {
+            background-color: #333;
+            border-color: #ff3333;        
+            color: white;
+            transform: scale(1.08);       
+            box-shadow: 0 0 12px #ff3333; 
+        }
+
+        /* Стиль для сообщения об оплате */
+        #paymentStatus { color: #00ff00; font-weight: bold; margin-top: 15px; min-height: 20px; }
+    </style>
+</head>
+<body>
+
+  <form id="orderForm">
+    <p>выберите ФастФуд:</p>
+    <hr>
+    <br>
+    <p>пиццы:</p>
+    <input type="radio" id="pepperoni" name="pizza" value="pepperoni">
+    <label for="pepperoni">пеперони</label><br>
+    
+    <input type="radio" id="cheese" name="pizza" value="cheese">
+    <label for="cheese">сырная</label><br>
+    
+    <input type="radio" id="mushroom" name="pizza" value="mushroom">
+    <label for="mushroom">грибная</label><br>
+    
+    <input type="radio" id="margarita" name="pizza" value="margarita">
+    <label for="margarita">Маргарита</label>
+    
+    <hr>
+    <p>суши:</p>
+    <input type="radio" id="sushisvasabi" name="sushi" value="sushisvasabi">
+    <label for="sushisvasabi">суши с вассаби (5 шт)</label><br>
+    
+    <input type="radio" id="sushisimbir" name="sushi" value="sushisimbir">
+    <label for="sushisimbir">суши с имбирем (5 шт)</label><br>
+    
+    <input type="radio" id="sushi" name="sushi" value="sushi">
+    <label for="sushi">суши (5 шт)</label><br>
+
+        <input type="radio" id="sushizapek" name="sushi" value="sushizapek">
+    <label for="sushizapek">суши запеченные (5 шт)</label><br>
+    
+    <hr>
+    <p>остальное:</p>
+    <input type="checkbox" id="nugget" name="more" value="nuggets">
+    <label for="nugget">нагетсы</label><br>
+
+    <input type="checkbox" id="fri" name="more" value="potato fri">
+    <label for="fri">Картошечка фри🍟</label><br>
+
+    <input type="checkbox" id="kriliakfc" name="more" value="krilishkikfc">
+    <label for="kriliakfc">Крылышки KFC</label><br>
+
+        <input type="checkbox" id="sushimore" name="more" value="sushimore">
+    <label for="sushimore">больше суши</label><br>
+    <input type="text" maxlength="2" placeholder="введите кол-во суши">
+    
+    <hr>
+    <p>добавки для пиццы:</p>
+    <input type="checkbox" id="morecheese" name="more" value="morecheese">
+    <label for="morecheese">Много сыра🧀</label><br>
+    
+    <input type="checkbox" id="morepepperoni" name="more" value="morepepperoni">
+    <label for="morepepperoni">Больше пеперони🥓</label><br>
+
+    <input type="checkbox" id="pineapple" name="more" value="pineapple">
+    <label for="pineapple">Ананасы🍍</label><br>
+
+    <input type="checkbox" id="jalapeno" name="more" value="jalapeno">
+    <label for="jalapeno">Острый халапеньо🌶️</label><br>
+
+    <hr>
+    <p>соусы:</p>
+    <input type="checkbox" id="cheese_sauce" name="sauce" value="cheese">
+    <label for="cheese_sauce">Сырный соус🟡</label><br>
+    
+    <input type="checkbox" id="bbq_sauce" name="sauce" value="bbq">
+    <label for="bbq_sauce">Соус Барбекю BBQ🟤</label><br>
+
+    <input type="checkbox" id="teriyaki" name="sauce" value="teriyaki">
+    <label for="teriyaki">Терияки🥢</label><br>
+
+    <input type="checkbox" id="mustard" name="sauce" value="mustard">
+    <label for="mustard">Горчица🟡</label><br>
+
+    <input type="checkbox" id="mayo" name="sauce" value="mayo">
+    <label for="mayo">Майонез⚪</label><br>
+
+    <input type="checkbox" id="ketchup" name="sauce" value="ketchup">
+    <label for="ketchup">Кетчуп🍅</label><br>
+    
+    <div style="display: flex; gap: 10px; margin-top: 15px;">
+      <!-- Изменили type="button" на id="orderBtn", чтобы JS видел эту кнопку -->
+      <button type="button" id="orderBtn">Заказать</button>
+      <button type="reset" class="reset-btn" id="resetBtn">Сбросить</button>
+    </div>
+
+    <!-- Тот самый блок для вывода надписей -->
+    <div id="paymentStatus"></div>
+  </form>
+
+  <!-- А ВОТ И МАГИЯ JAVASCRIPT! -->
+  <script>
+    const orderBtn = document.getElementById('orderBtn');
+    const resetBtn = document.getElementById('resetBtn');
+    const statusText = document.getElementById('paymentStatus');
+
+    // Что происходит при клике на "Заказать"
+    orderBtn.addEventListener('click', function() {
+      // 1. Сразу пишем первую надпись
+      statusText.innerText = "ОПЛАТА ПРОШЛА. ЖДИТЕ";
+      
+      // 2. Включаем таймер на 4000 миллисекунд (4 секунды)
+      setTimeout(function() {
+        statusText.innerText = "ОЖИДАЙТЕ.ВАША ЕДА ЕДЕТ К ВАМ 🍕🚗";
+      }, 4000);
+    });
+
+    // Очищаем надпись, если нажали кнопку "Сбросить"
+    resetBtn.addEventListener('click', function() {
+      statusText.innerText = "";
+    });
+  </script>
+
+</body>
+</html>
